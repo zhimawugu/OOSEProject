@@ -24,8 +24,16 @@ public class BookingServiceTest {
         TripRepository tripRepository = new TripRepository();
 
         // mock data
-        tripRepository.save(new Trip(1L, LocalDateTime.of(2025, 1, 1, 10, 0), testRoute(10L, "Dublin -> Cork")));
-        tripRepository.save(new Trip(2L, LocalDateTime.of(2025, 1, 1, 12, 0), testRoute(20L, "Dublin -> Galway")));
+        tripRepository.save(new Trip(
+                1L,
+                LocalDateTime.of(2025, 1, 1, 10, 0),
+                testRoute(10L, "Dublin -> Cork")
+        ));
+        tripRepository.save(new Trip(
+                2L,
+                LocalDateTime.of(2025, 1, 1, 12, 0),
+                testRoute(20L, "Dublin -> Galway")
+        ));
 
         bookingRepository = new BookingRepository();
 
@@ -40,7 +48,7 @@ public class BookingServiceTest {
 
     // ===== Happy Path =====
     @Test
-    void bookTrip_success() {
+    void bookTripSuccess() {
         BookingResponse response = controller.bookTrip(1L, 1001L);
 
         assertNotNull(response);
@@ -49,7 +57,7 @@ public class BookingServiceTest {
 
     // ===== Unhappy Path 1: Trip not found =====
     @Test
-    void bookTrip_tripNotFound_shouldThrowException() {
+    void bookTripTripNotFoundShouldThrowException() {
         IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> controller.bookTrip(999L, 1001L)
@@ -60,7 +68,7 @@ public class BookingServiceTest {
 
     // ===== Unhappy Path 2: Duplicate booking =====
     @Test
-    void bookTrip_duplicateBooking_shouldThrowException() {
+    void bookTripDuplicateBookingShouldThrowException() {
         controller.bookTrip(1L, 1001L);
 
         IllegalStateException ex = assertThrows(
@@ -73,7 +81,7 @@ public class BookingServiceTest {
 
     // ===== Repository-level test =====
     @Test
-    void bookingRepository_exists_shouldReturnTrue() {
+    void bookingRepositoryExistsShouldReturnTrue() {
         Booking booking = new Booking(1001L, 1L);
         bookingRepository.save(booking);
 
@@ -86,7 +94,7 @@ public class BookingServiceTest {
 class BookingControllerTest {
 
     @Test
-    void controller_shouldReturnBookingResponse() {
+    void controllerShouldReturnBookingResponse() {
         TripRepository tripRepository = new TripRepository();
         BookingRepository bookingRepository = new BookingRepository();
 
@@ -100,4 +108,3 @@ class BookingControllerTest {
         assertTrue(response.getBookingId() > 0);
     }
 }
-
