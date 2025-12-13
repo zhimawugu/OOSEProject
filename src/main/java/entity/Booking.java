@@ -1,25 +1,33 @@
 package entity;
 
 public class Booking {
-    private Long bookingID;
-    private Long passengerID;
-    private Trip trip;
+    private long bookingId;
+    private final long passengerId;
+    private final long tripId;
 
-    public Booking(Long bookingID, Long passengerID, Trip trip) {
-        this.bookingID = bookingID;
-        this.passengerID = passengerID;
-        this.trip = trip;
+
+    public Booking(long passengerId, long tripId) {
+        this.passengerId = passengerId;
+        this.tripId = tripId;
     }
 
-    public Long getBookingID() {
-        return bookingID;
+
+    public long getBookingId() {
+        return bookingId;
     }
 
-    public Long getPassengerID() {
-        return passengerID;
+
+    public void setBookingId(long bookingId) {
+        this.bookingId = bookingId;
     }
 
-    public Trip getTrip() {
-        return trip;
+
+    public long getPassengerId() {
+        return passengerId;
+    }
+
+
+    public long getTripId() {
+        return tripId;
     }
 }
