@@ -8,7 +8,6 @@ import service.StopService;
 
 
 public class RouteServiceTest {
-
     @Test
     void testCreateRouteSuccess() {
         StopService stopService = new StopService();
