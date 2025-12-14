@@ -92,11 +92,14 @@ public class BookingServiceTest {
 
 // Controller-focused test
 class BookingControllerTest {
-
     @Test
     void controllerShouldReturnBookingResponse() {
         TripRepository tripRepository = new TripRepository();
         BookingRepository bookingRepository = new BookingRepository();
+
+        Route route = new Route(10L, "Dublin -> Cork", new ArrayList<>());
+        Trip trip = new Trip(2L, LocalDateTime.now().plusDays(1), route);
+        tripRepository.save(trip);
 
         TripService tripService = new TripService(tripRepository);
         BookingService bookingService = new BookingService(tripService, bookingRepository);
