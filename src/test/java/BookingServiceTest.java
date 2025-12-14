@@ -46,7 +46,7 @@ public class BookingServiceTest {
         return new Route(routeId, name, new ArrayList<>());
     }
 
-    // ===== Happy Path =====
+    // Happy Path
     @Test
     void bookTripSuccess() {
         BookingResponse response = controller.bookTrip(1L, 1001L);
@@ -55,7 +55,7 @@ public class BookingServiceTest {
         assertTrue(response.getBookingId() > 0);
     }
 
-    // ===== Unhappy Path 1: Trip not found =====
+    // Unhappy Path 1: Trip not found
     @Test
     void bookTripTripNotFoundShouldThrowException() {
         IllegalArgumentException ex = assertThrows(
@@ -66,7 +66,7 @@ public class BookingServiceTest {
         assertEquals("Trip not found", ex.getMessage());
     }
 
-    // ===== Unhappy Path 2: Duplicate booking =====
+    // Unhappy Path 2: Duplicate booking
     @Test
     void bookTripDuplicateBookingShouldThrowException() {
         controller.bookTrip(1L, 1001L);
@@ -79,7 +79,7 @@ public class BookingServiceTest {
         assertEquals("Booking already exists", ex.getMessage());
     }
 
-    // ===== Repository-level test =====
+    // Repository-level test
     @Test
     void bookingRepositoryExistsShouldReturnTrue() {
         Booking booking = new Booking(1001L, 1L);
@@ -90,7 +90,7 @@ public class BookingServiceTest {
     }
 }
 
-// ===== Optional: Controller-focused test =====
+// Controller-focused test
 class BookingControllerTest {
 
     @Test
