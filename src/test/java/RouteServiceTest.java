@@ -24,7 +24,7 @@ public class RouteServiceTest {
     }
 
     @Test
-    void testCreateRoute_EmptyRouteName() {
+    void testCreateRouteEmptyRouteName() {
         StopService stopService = new StopService();
         RouteService routeService = new RouteService(stopService);
 
@@ -34,7 +34,7 @@ public class RouteServiceTest {
     }
 
     @Test
-    void testCreateRoute_EmptyStopsInfo() {
+    void testCreateRouteEmptyStopsInfo() {
         StopService stopService = new StopService();
         RouteService routeService = new RouteService(stopService);
 
